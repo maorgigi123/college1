@@ -79,7 +79,7 @@ const HistoryDiv = styled.div`
 
 const History = () => {
   const navigate = useNavigate();
-  const {acitveParking,history,updateUsesr} = useContext(UserContext)
+  const {acitveParking,history,updateUsesr,user} = useContext(UserContext)
   return (
     <ContainerPage>
       <Container>
@@ -94,7 +94,9 @@ const History = () => {
               <RightSelectContainer>
                 {history.length === 0 && <h1  style={{color:'white'}}> No history yet</h1>}
                 {history.map((h, index) => {
+                  if(h.user.username !== user.username) return;
                   return <HistoryDiv key={index}>
+                
                     <p>car: {h.user.carType}</p>
                     <p>Member: {h.user.carMember}</p>
                     <p>cost: {h.cost}</p>
